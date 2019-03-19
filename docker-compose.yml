@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+        app:
+                image: node:8
+                build: app/.
+                ports:
+                        - "8080:8080"
+                links: 
+                        - db
+                depends_on:
+                        - db
+
+
+        db:
+                image: mysql:latest
+                build: db/.
+                ports:
+                        - "3306:3306"
+                environment:
+                        MYSQL_ROOT_PASSWORD: 123
+                        MYSQL_DATABASE: fiap_32aso
+                        MYSQL_USER: users_service
+                        MYSQL_PASSWORD: 123
